@@ -1,563 +1,500 @@
-import React, { useState } from 'react';
-import { Dumbbell, Flame, Zap, ShoppingCart, ChevronRight, CheckCircle2, TrendingUp, AlertTriangle, Heart, Briefcase, Star, Menu, Instagram, Youtube, Facebook, Twitter, Mail, MapPin, Phone } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZymKaro.in - Apni Value Badhao</title>
+    
+    <!-- Tailwind CSS (Design ke liye) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (Icons ke liye) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Smooth scrolling and transitions */
+        html { scroll-behavior: smooth; }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-emerald-300 via-green-400 to-emerald-500 text-green-950 font-sans selection:bg-emerald-500 selection:text-white pb-14 md:pb-0">
 
-const App = () => {
-  const [activeTab, setActiveTab] = useState('home');
-  const [cartMessage, setCartMessage] = useState('');
-
-  // Mock function for Affiliate Buy Button
-  const handleBuy = (productName) => {
-    setCartMessage(`${productName} cart mein add ho gaya hai! Redirecting to partner site...`);
-    setTimeout(() => setCartMessage(''), 3000);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-300 via-green-400 to-emerald-500 text-green-950 font-sans selection:bg-emerald-500 selection:text-white pb-14 md:pb-0">
-      
-      {/* Navbar (Pure Green Theme) */}
-      <nav className="w-full bg-green-400 z-50 border-b border-green-500 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2 md:gap-3 cursor-pointer group" onClick={() => setActiveTab('home')}>
-              {/* Custom Boy & Girl Gym Sticker Logo (No Background) */}
-              <div className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full drop-shadow-md">
-                  {/* Boy lifting barbell */}
-                  <g transform="translate(12, 25)">
-                    <circle cx="20" cy="15" r="7" fill="#166534" />
-                    <path d="M10 32 Q20 26 30 32 L26 60 L14 60 Z" fill="#166534" />
-                    <path d="M4 20 L14 32 M26 32 L36 20" stroke="#166534" strokeWidth="4.5" strokeLinecap="round"/>
-                    <path d="M0 20 L40 20" stroke="#064E3B" strokeWidth="3" strokeLinecap="round"/>
-                    <rect x="-2" y="14" width="4" height="12" rx="1" fill="#064E3B" />
-                    <rect x="38" y="14" width="4" height="12" rx="1" fill="#064E3B" />
-                  </g>
-                  {/* Girl lifting dumbbells */}
-                  <g transform="translate(48, 28)">
-                    <circle cx="20" cy="15" r="6.5" fill="#15803D" />
-                    <path d="M25 12 Q32 16 28 23" stroke="#15803D" strokeWidth="3" fill="none" strokeLinecap="round" />
-                    <path d="M12 32 Q20 26 28 32 L24 57 L16 57 Z" fill="#15803D" />
-                    <path d="M5 22 L15 32 M25 32 L35 22" stroke="#15803D" strokeWidth="4" strokeLinecap="round"/>
-                    <rect x="2" y="18" width="6" height="8" rx="2" fill="#064E3B" />
-                    <rect x="32" y="18" width="6" height="8" rx="2" fill="#064E3B" />
-                  </g>
-                </svg>
-              </div>
-              
-              {/* BRAND NEW TYPOGRAPHY LOGO DESIGN */}
-              <div className="flex flex-col justify-center ml-1 transform transition-all group-hover:translate-x-1 duration-300 select-none">
-                <div className="flex items-baseline space-x-0.5">
-                  <span className="font-black text-3xl md:text-4xl tracking-tighter text-green-950 italic drop-shadow-sm">
-                    ZYM
-                  </span>
-                  <span className="font-black text-3xl md:text-4xl tracking-tighter italic text-transparent bg-clip-text bg-gradient-to-br from-emerald-600 to-teal-700 drop-shadow-sm">
-                    KARO
-                  </span>
-                </div>
-                <div className="flex items-center w-full justify-end -mt-1 md:-mt-2 pr-1">
-                  <div className="h-1.5 md:h-2 w-full bg-gradient-to-r from-transparent via-green-500 to-emerald-600 rounded-full mr-1 transform -skew-x-12 shadow-sm"></div>
-                  <span className="font-extrabold text-xs md:text-sm text-green-900 lowercase tracking-widest bg-green-300 px-1 rounded-sm border border-green-400">
-                    .in
-                  </span>
-                </div>
-              </div>
-
-            </div>
-            
-            {/* Desktop Links & 3-Line Menu Button */}
-            <div className="flex items-center gap-4 md:gap-8">
-              <div className="hidden md:flex space-x-8 font-bold text-green-900 tracking-wide">
-                <button onClick={() => setActiveTab('home')} className={`hover:text-green-950 transition-colors ${activeTab === 'home' ? 'text-green-950 border-b-2 border-green-900' : ''}`}>Motivation</button>
-                <button onClick={() => setActiveTab('workout')} className={`hover:text-green-950 transition-colors ${activeTab === 'workout' ? 'text-green-950 border-b-2 border-green-900' : ''}`}>Workout Plan</button>
-                <button onClick={() => setActiveTab('diet')} className={`hover:text-green-950 transition-colors ${activeTab === 'diet' ? 'text-green-950 border-b-2 border-green-900' : ''}`}>Budget Diet</button>
-                <button onClick={() => setActiveTab('store')} className={`hover:text-green-950 transition-colors flex items-center gap-1 ${activeTab === 'store' ? 'text-green-950 border-b-2 border-green-900' : ''}`}>
-                  <ShoppingCart className="w-4 h-4" /> Store
-                </button>
-              </div>
-              
-              {/* Beautiful 3-Line Hamburger Menu Button */}
-              <button className="p-2 bg-green-700/10 text-green-950 hover:bg-green-700 hover:text-white rounded-xl transition-all shadow-sm border border-green-700/20 active:scale-95 cursor-pointer">
-                <Menu className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content Area */}
-      <div>
-        
-        {/* --- HOME / MOTIVATION SECTION --- */}
-        {activeTab === 'home' && (
-          <div className="animate-in fade-in duration-500">
-            
-            {/* 1. Hero Section */}
-            <div className="pt-8 md:pt-12 px-4 max-w-7xl mx-auto mb-16 md:mb-24">
-              <div className="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden min-h-[75vh] py-16 md:py-20 flex items-center shadow-2xl shadow-green-700/30 border border-green-400">
-                <div className="absolute inset-0 z-0">
-                  <img 
-                    src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" 
-                    alt="Fit happy people working out" 
-                    className="w-full h-full object-cover"
-                  />
-                  {/* Dark Green Overlay to make text readable */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-900/90 via-emerald-900/80 to-transparent" />
+    <!-- Navbar -->
+    <nav class="w-full bg-green-400 z-50 border-b border-green-500 shadow-md sticky top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-2 md:gap-3 cursor-pointer group" onclick="switchTab('home')">
+                    <!-- SVG Logo -->
+                    <div class="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full drop-shadow-md">
+                            <!-- Boy lifting barbell -->
+                            <g transform="translate(12, 25)">
+                                <circle cx="20" cy="15" r="7" fill="#166534" />
+                                <path d="M10 32 Q20 26 30 32 L26 60 L14 60 Z" fill="#166534" />
+                                <path d="M4 20 L14 32 M26 32 L36 20" stroke="#166534" stroke-width="4.5" stroke-linecap="round"/>
+                                <path d="M0 20 L40 20" stroke="#064E3B" stroke-width="3" stroke-linecap="round"/>
+                                <rect x="-2" y="14" width="4" height="12" rx="1" fill="#064E3B" />
+                                <rect x="38" y="14" width="4" height="12" rx="1" fill="#064E3B" />
+                            </g>
+                            <!-- Girl lifting dumbbells -->
+                            <g transform="translate(48, 28)">
+                                <circle cx="20" cy="15" r="6.5" fill="#15803D" />
+                                <path d="M25 12 Q32 16 28 23" stroke="#15803D" stroke-width="3" fill="none" stroke-linecap="round" />
+                                <path d="M12 32 Q20 26 28 32 L24 57 L16 57 Z" fill="#15803D" />
+                                <path d="M5 22 L15 32 M25 32 L35 22" stroke="#15803D" stroke-width="4" stroke-linecap="round"/>
+                                <rect x="2" y="18" width="6" height="8" rx="2" fill="#064E3B" />
+                                <rect x="32" y="18" width="6" height="8" rx="2" fill="#064E3B" />
+                            </g>
+                        </svg>
+                    </div>
+                    
+                    <!-- Text Logo -->
+                    <div class="flex flex-col justify-center ml-1 transform transition-all group-hover:translate-x-1 duration-300 select-none">
+                        <div class="flex items-baseline space-x-0.5">
+                            <span class="font-black text-3xl md:text-4xl tracking-tighter text-green-950 italic drop-shadow-sm">ZYM</span>
+                            <span class="font-black text-3xl md:text-4xl tracking-tighter italic text-transparent bg-clip-text bg-gradient-to-br from-emerald-600 to-teal-700 drop-shadow-sm">KARO</span>
+                        </div>
+                        <div class="flex items-center w-full justify-end -mt-1 md:-mt-2 pr-1">
+                            <div class="h-1.5 md:h-2 w-full bg-gradient-to-r from-transparent via-green-500 to-emerald-600 rounded-full mr-1 transform -skew-x-12 shadow-sm"></div>
+                            <span class="font-extrabold text-xs md:text-sm text-green-900 lowercase tracking-widest bg-green-300 px-1 rounded-sm border border-green-400">.in</span>
+                        </div>
+                    </div>
                 </div>
                 
-                <div className="relative z-10 text-left px-6 md:px-16 w-full max-w-4xl">
-                  <div className="inline-block bg-emerald-500 text-white px-4 md:px-5 py-2 rounded-full font-bold mb-6 shadow-lg border border-emerald-400 text-sm md:text-base">
-                    ✨ Apni Life Ko Transform Karo Aaj Hi ✨
-                  </div>
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight uppercase tracking-tight text-white drop-shadow-lg">
-                    Utho, Fitness Apnao,<br/> <span className="text-emerald-300">Apni Value Badhao!</span>
-                  </h1>
-                  <p className="text-lg sm:text-xl md:text-2xl text-green-100 mb-10 font-medium max-w-2xl drop-shadow-md">
-                    Aalsi ban kar rona band karo. Sirf 4 mahine Gym ko do aur dekho kaise tumhari health, looks, aur poori zindagi ek positive direction mein badal jayegi.
-                  </p>
-                  <button 
-                    onClick={() => setActiveTab('workout')}
-                    className="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 md:px-10 py-4 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-transform shadow-xl shadow-emerald-500/40 flex items-center gap-2"
-                  >
-                    Start Your Transformation <ChevronRight className="w-6 h-6" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* 2. Reality Check / Regret Section */}
-            <div className="max-w-7xl mx-auto px-4 py-12 md:py-24">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 uppercase text-red-600 flex items-center justify-center gap-3 drop-shadow-sm flex-wrap">
-                  <AlertTriangle className="w-8 h-8 md:w-10 md:h-10" /> Kadwa Sach (Reality Check)
-                </h2>
-                <p className="text-xl text-green-800 font-bold">Aaina dekho aur khud se pucho, kya tum apni is aalsi halat se khush ho?</p>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div className="order-2 md:order-1 relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-400 bg-emerald-500 min-h-[350px] md:min-h-[450px]">
-                  <img 
-                    src="https://images.unsplash.com/photo-1498805983167-a523078d762c?auto=format&fit=crop&w=800&q=80" 
-                    alt="Regret and sad man" 
-                    className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-80 mix-blend-multiply"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-green-950/90 via-green-900/50 to-transparent p-8 flex flex-col justify-end">
-                    <p className="text-2xl font-bold text-emerald-300 mb-2">Piche Reh Gaye Tum...</p>
-                    <p className="text-green-100 font-medium">Jab dusre log khud par mehnat kar rahe the, tumne bahane banaye.</p>
-                  </div>
-                </div>
-
-                <div className="order-1 md:order-2 space-y-6 text-lg leading-relaxed text-green-900 font-medium">
-                  <div className="bg-green-300/80 p-6 rounded-2xl border border-green-400 border-l-4 border-l-red-500 shadow-lg shadow-green-600/10">
-                    <h3 className="text-2xl font-bold text-green-950 mb-2 flex items-center gap-2">
-                      <Heart className="w-6 h-6 text-red-600" /> Relationships & Dating
-                    </h3>
-                    <p>
-                      "Koi acchi ladki mujhe pasand kyu nahi karti?" - Iska reason tumhari personality hai. Fit logo ko dekh kar ladkiyan isliye attract hoti hain kyunki ek fit body <strong>Discipline aur Dedication</strong> dikhati hai. Agar tum khud ki care nahi kar sakte, toh kisi aur ki kya karoge?
-                    </p>
-                  </div>
-
-                  <div className="bg-emerald-200/80 p-6 rounded-2xl border border-emerald-300 border-l-4 border-l-blue-600 shadow-lg shadow-emerald-600/10">
-                    <h3 className="text-2xl font-bold text-green-950 mb-2 flex items-center gap-2">
-                      <Briefcase className="w-6 h-6 text-blue-600" /> Corporate & College Life
-                    </h3>
-                    <p>
-                      College ho ya badi corporate company, ek fit insaan ki entry hi alag hoti hai. Boss se lekar colleagues tak, sab unhe seriously lete hain. Tumhara motapa ya kamzori tumhe hamesha under-confident rakhti hai aur tum opportunities miss kar dete ho.
-                    </p>
-                  </div>
-                  
-                  <p className="text-xl font-bold text-green-900 bg-green-400 p-4 rounded-xl border border-green-500 shadow-sm">
-                    Regret karna band karo. Abhi bhi waqt hai. Aaj shuru karoge, toh 4 mahine baad tum bhi us list mein hoge jise dekh kar log inspire hote hain!
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 3. The Dream Life / Transformations */}
-            <div className="bg-emerald-500/20 py-24 border-y border-emerald-400 backdrop-blur-sm">
-              <div className="max-w-7xl mx-auto px-4">
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">
-                    Dekho Inhone Kaise Badli Zindagi
-                  </h2>
-                  <p className="text-xl text-green-800 font-bold">Ye log bhi kabhi aalsi the, par inhone decision liya aur aaj inki success dekho.</p>
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                  {/* Card 1 */}
-                  <div className="group relative rounded-3xl overflow-hidden bg-emerald-100 border border-emerald-300 hover:border-emerald-400 transition-colors shadow-xl shadow-emerald-600/20">
-                    <div className="h-72 overflow-hidden">
-                      <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop" alt="Beautiful fit girl" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <!-- Desktop Links -->
+                <div class="flex items-center gap-4 md:gap-8">
+                    <div class="hidden md:flex space-x-8 font-bold text-green-900 tracking-wide">
+                        <button onclick="switchTab('home')" id="nav-home" class="nav-btn hover:text-green-950 transition-colors text-green-950 border-b-2 border-green-900">Motivation</button>
+                        <button onclick="switchTab('workout')" id="nav-workout" class="nav-btn hover:text-green-950 transition-colors">Workout Plan</button>
+                        <button onclick="switchTab('diet')" id="nav-diet" class="nav-btn hover:text-green-950 transition-colors">Budget Diet</button>
+                        <button onclick="switchTab('store')" id="nav-store" class="nav-btn hover:text-green-950 transition-colors flex items-center gap-1">
+                            <i data-lucide="shopping-cart" class="w-4 h-4"></i> Store
+                        </button>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Star className="w-5 h-5 text-green-700 fill-green-700" />
-                        <span className="font-black text-green-800 text-lg">Priya's Transformation</span>
-                      </div>
-                      <p className="text-green-900 font-medium">Pehle college me sab iska mazak udate the overweight hone ke karan. Aaj ye fitness model hai aur har koi iski personality ka fan hai. Gym ne iska confidence aasman par pohocha diya.</p>
-                    </div>
-                  </div>
-
-                  {/* Card 2 */}
-                  <div className="group relative rounded-3xl overflow-hidden bg-green-200 border border-green-400 hover:border-green-500 transition-colors shadow-xl shadow-green-600/20">
-                    <div className="h-72 overflow-hidden">
-                      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2074&auto=format&fit=crop" alt="Corporate successful fit man" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Briefcase className="w-5 h-5 text-green-700" />
-                        <span className="font-black text-green-800 text-lg">Rahul in Corporate</span>
-                      </div>
-                      <p className="text-green-900 font-medium">Patla aur under-confident Rahul jab meeting me bolta tha, koi nahi sunta tha. 6 mahine Gym kiya, personality aisi bani ki aaj wo apni IT company ka sabse dynamic team lead hai.</p>
-                    </div>
-                  </div>
-
-                  {/* Card 3 */}
-                  <div className="group relative rounded-3xl overflow-hidden bg-emerald-100 border border-emerald-300 hover:border-emerald-400 transition-colors shadow-xl shadow-emerald-600/20">
-                    <div className="h-72 overflow-hidden">
-                      <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=2070&auto=format&fit=crop" alt="Fit couple" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Heart className="w-5 h-5 text-red-600 fill-red-600" />
-                        <span className="font-black text-green-800 text-lg">The Power Couple</span>
-                      </div>
-                      <p className="text-green-900 font-medium">Aman ko uski dream girl ne isliye choose kiya kyunki usne apne aap ko fit rakha tha. Ek fit insan doosre ko secure aur attractive feel karwata hai. Ye hai fitness ka real life magic.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        )}
-
-        {/* --- WORKOUT PLAN SECTION --- */}
-        {activeTab === 'workout' && (
-          <div className="max-w-7xl mx-auto px-4 py-12 animate-in fade-in duration-500">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">
-                Tumhara Pehla Kadam
-              </h2>
-              <p className="text-xl text-green-800 font-bold">Pehle din se lekar pehle mahine tak kya karna hai, sab yahan hai. Darna nahi hai!</p>
-            </div>
-
-            {/* Day 1 Plan */}
-            <div className="mb-20">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="bg-emerald-500 text-white p-3 rounded-xl shadow-lg shadow-emerald-500/30 border border-emerald-600"><Dumbbell className="w-8 h-8"/></div>
-                <h3 className="text-3xl font-black text-green-950">Pehla Din Gym Mein: Full Body Mix</h3>
-              </div>
-              <p className="text-green-900 font-medium mb-8 text-lg bg-green-300 p-6 rounded-2xl border border-green-400 shadow-sm">
-                Pehle din jyada weight mat uthana. Body ko aadat dalni hai. Sabse pehle 10 minute <strong className="text-green-950">Warm-up</strong> karna bahut jaruri hai (Treadmill, Jumping Jacks, Stretching).
-              </p>
-              
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  { title: "Pushups (Chest & Triceps)", sets: "3 Sets x 10 Reps", img: "https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&auto=format&fit=crop" },
-                  { title: "Lat Pulldown (Back)", sets: "3 Sets x 12 Reps", img: "https://images.unsplash.com/photo-1581009137042-c552e485697a?w=600&auto=format&fit=crop" },
-                  { title: "Bodyweight Squats (Legs)", sets: "3 Sets x 15 Reps", img: "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&auto=format&fit=crop" }
-                ].map((exercise, idx) => (
-                  <div key={idx} className="bg-emerald-100 rounded-3xl overflow-hidden border border-emerald-300 hover:border-emerald-400 transition-colors shadow-xl shadow-emerald-600/10">
-                    <img src={exercise.img} alt={exercise.title} className="w-full h-56 object-cover" />
-                    <div className="p-6">
-                      <h4 className="text-xl font-black mb-3 text-green-950">{exercise.title}</h4>
-                      <div className="inline-block bg-green-400 px-4 py-2 rounded-lg text-green-950 font-bold text-sm border border-green-500">
-                        {exercise.sets}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Month 1 Plan */}
-            <div className="bg-gradient-to-br from-green-300 to-emerald-300 p-8 md:p-12 rounded-[2rem] border border-green-400 shadow-2xl shadow-green-700/20 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/30 rounded-full blur-3xl"></div>
-              <h3 className="text-3xl font-black mb-8 flex items-center gap-3 relative z-10 text-green-950">
-                <TrendingUp className="text-green-800 w-10 h-10" /> Pehle Mahine Ka Target
-              </h3>
-              <ul className="space-y-6 relative z-10">
-                <li className="flex items-start gap-4 bg-emerald-100/60 backdrop-blur-sm p-4 rounded-xl border border-emerald-300 shadow-sm">
-                  <CheckCircle2 className="w-7 h-7 text-green-700 shrink-0 mt-1" />
-                  <span className="text-lg text-green-900 font-medium"><strong>Consistency (Niyam):</strong> Pehle 30 din tumhara ek hi goal hai - Roz Gym jana. Chahe sirf 20 minute karo, par jana zaroori hai.</span>
-                </li>
-                <li className="flex items-start gap-4 bg-emerald-100/60 backdrop-blur-sm p-4 rounded-xl border border-emerald-300 shadow-sm">
-                  <CheckCircle2 className="w-7 h-7 text-green-700 shrink-0 mt-1" />
-                  <span className="text-lg text-green-900 font-medium"><strong>Form over Weight:</strong> Ego lifting mat karna. Bhari weight uthane ke chakkar me chot lag sakti hai. Posture sahi rakhna seekho.</span>
-                </li>
-                <li className="flex items-start gap-4 bg-emerald-100/60 backdrop-blur-sm p-4 rounded-xl border border-emerald-300 shadow-sm">
-                  <CheckCircle2 className="w-7 h-7 text-green-700 shrink-0 mt-1" />
-                  <span className="text-lg text-green-900 font-medium"><strong>Mindset:</strong> Jab bhi aals aane lage, un logo ko yaad karna jinki life tum chahte ho aur aaina dekh kar apna maksad yaad karna.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        )}
-
-        {/* --- DIET PLAN SECTION --- */}
-        {activeTab === 'diet' && (
-          <div className="max-w-4xl mx-auto px-4 py-12 animate-in fade-in duration-500">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">
-                ₹1500 - ₹2000 Diet Plan
-              </h2>
-              <p className="text-xl text-green-800 font-bold">Normal aur sasta diet plan jo sach mein kaam karta hai. Mahange fancy diet ki jarurat nahi hai.</p>
-            </div>
-
-            <div className="space-y-4">
-              {[
-                { time: "Subah (Pre-workout)", meal: "2 Kele (Banana) + 1 Cup Black Coffee", cost: "Super Cheap", icon: "🍌" },
-                { time: "Breakfast (Post-workout)", meal: "50g Oats + Dudh (Milk) + 3 Uble Ande (1 whole, 2 white)", cost: "High Protein", icon: "🍳" },
-                { time: "Dopehar (Lunch)", meal: "1 Katori Dal + Chawal/Roti + Dahi + Thoda Salad", cost: "Ghar ka Khana", icon: "🍛" },
-                { time: "Shaam (Snack)", meal: "50g Bhune hue Chane ya Soyabean Chunks", cost: "Budget Protein", icon: "🥜" },
-                { time: "Raat (Dinner)", meal: "2 Roti + Sabzi + Thoda Paneer ya Ande ki Bhurji", cost: "Light & Healthy", icon: "🥗" },
-              ].map((item, idx) => (
-                <div key={idx} className="bg-green-200 p-6 rounded-2xl border border-green-400 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:bg-green-300 transition-all">
-                  <div className="flex items-center gap-5">
-                    <div className="text-4xl bg-emerald-200 p-3 rounded-full border border-emerald-300 shadow-sm">{item.icon}</div>
-                    <div>
-                      <h4 className="text-green-800 font-black text-lg">{item.time}</h4>
-                      <p className="text-green-950 text-xl font-bold mt-1">{item.meal}</p>
-                    </div>
-                  </div>
-                  <span className="bg-emerald-500 border border-emerald-600 text-white px-5 py-2 rounded-full text-sm font-black whitespace-nowrap shadow-sm">
-                    {item.cost}
-                  </span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="mt-10 p-6 bg-emerald-200 border border-emerald-300 rounded-2xl text-center shadow-inner">
-              <p className="text-green-950 font-bold text-lg">Agar thoda budget aur badha sakte ho, toh din mein ek scoop Whey Protein aur Creatine add kar lena (Store section check karo). Par shuruwat is basic diet se hi karo!</p>
-            </div>
-          </div>
-        )}
-
-        {/* --- STORE / AFFILIATE SECTION --- */}
-        {activeTab === 'store' && (
-          <div className="max-w-7xl mx-auto px-4 py-12 animate-in fade-in duration-500">
-            {cartMessage && (
-              <div className="fixed top-20 right-4 bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow-xl shadow-green-600/40 z-50 animate-in slide-in-from-top-4 border border-green-500">
-                {cartMessage}
-              </div>
-            )}
-
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">
-                Performance Boosters
-              </h2>
-              <p className="text-xl text-green-800 font-bold">Ye products tumhari recovery aur size badhane mein madad karenge. (100% Genuine Recommended Products)</p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              
-              {/* Product 1 */}
-              <div className="bg-green-200 rounded-3xl overflow-hidden border border-green-400 flex flex-col hover:border-green-500 transition-all shadow-xl shadow-green-700/20 group">
-                <div className="relative h-64 bg-emerald-50 p-6 flex justify-center items-center border-b border-green-300">
-                  <img 
-                    src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=500&auto=format&fit=crop" 
-                    alt="Whey Protein" 
-                    className="h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform"
-                  />
-                  <div className="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md">
-                    Best Seller
-                  </div>
-                </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-black mb-2 text-green-950">Raw Whey Protein Concentrate (1kg)</h3>
-                  <p className="text-green-900 font-medium mb-6 text-base flex-grow leading-relaxed">
-                    Workout ke baad muscles ko recover karne ke liye sabse best. Ek scoop me 24g pure protein. Sasta aur asardar, college aur corporate dono ke liye best.
-                  </p>
-                  <div className="flex items-center justify-between mt-auto bg-emerald-200 p-4 rounded-2xl border border-emerald-300 shadow-sm">
-                    <div>
-                      <span className="text-sm text-green-800 line-through font-bold">₹2,499</span>
-                      <div className="text-3xl font-black text-green-950">₹1,699</div>
-                    </div>
-                    <button 
-                      onClick={() => handleBuy('Raw Whey Protein')}
-                      className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-lg shadow-green-600/30"
-                    >
-                      <ShoppingCart className="w-5 h-5" /> Buy Now
+                    <!-- Menu Button -->
+                    <button class="p-2 bg-green-700/10 text-green-950 hover:bg-green-700 hover:text-white rounded-xl transition-all shadow-sm border border-green-700/20 active:scale-95 cursor-pointer">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
                     </button>
-                  </div>
                 </div>
-              </div>
-
-              {/* Product 2 */}
-              <div className="bg-green-200 rounded-3xl overflow-hidden border border-green-400 flex flex-col hover:border-green-500 transition-all shadow-xl shadow-green-700/20 group">
-                <div className="relative h-64 bg-emerald-50 p-6 flex justify-center items-center border-b border-green-300">
-                  <img 
-                    src="https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=500&auto=format&fit=crop" 
-                    alt="Creatine Monohydrate" 
-                    className="h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform"
-                  />
-                  <div className="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-md">
-                    Must Have
-                  </div>
-                </div>
-                <div className="p-8 flex flex-col flex-grow">
-                  <h3 className="text-2xl font-black mb-2 text-green-950">Creatine Monohydrate (250g)</h3>
-                  <p className="text-green-900 font-medium mb-6 text-base flex-grow leading-relaxed">
-                    Size aur strength badhane ke liye sabse scientific proven supplement. Roz 3-5g pani ke sath piyo. Ek dabba 2-3 mahine chalta hai. Energy aur pump dono badhata hai.
-                  </p>
-                  <div className="flex items-center justify-between mt-auto bg-emerald-200 p-4 rounded-2xl border border-emerald-300 shadow-sm">
-                    <div>
-                      <span className="text-sm text-green-800 line-through font-bold">₹999</span>
-                      <div className="text-3xl font-black text-green-950">₹599</div>
-                    </div>
-                    <button 
-                      onClick={() => handleBuy('Creatine Monohydrate')}
-                      className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 shadow-lg shadow-green-600/30"
-                    >
-                      <ShoppingCart className="w-5 h-5" /> Buy Now
-                    </button>
-                  </div>
-                </div>
-              </div>
-
             </div>
-          </div>
-        )}
-
-      </div>
-
-      {/* Mobile Bottom Navigation */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 w-full bg-emerald-500 border-t border-emerald-600 z-50 flex justify-around items-center py-1.5 px-2 pb-[env(safe-area-inset-bottom,0.5rem)] shadow-[0_-5px_15px_rgba(0,0,0,0.1)]">
-        <button onClick={() => setActiveTab('home')} className={`flex flex-col items-center pt-1.5 pb-1 px-2 ${activeTab === 'home' ? 'text-white border-t-2 border-white -mt-1.5' : 'text-emerald-100'}`}>
-          <Flame className="w-5 h-5" />
-          <span className="text-[10px] mt-0.5 font-black uppercase">Motivation</span>
-        </button>
-        <button onClick={() => setActiveTab('workout')} className={`flex flex-col items-center pt-1.5 pb-1 px-2 ${activeTab === 'workout' ? 'text-white border-t-2 border-white -mt-1.5' : 'text-emerald-100'}`}>
-          <Dumbbell className="w-5 h-5" />
-          <span className="text-[10px] mt-0.5 font-black uppercase">Workout</span>
-        </button>
-        <button onClick={() => setActiveTab('diet')} className={`flex flex-col items-center pt-1.5 pb-1 px-2 ${activeTab === 'diet' ? 'text-white border-t-2 border-white -mt-1.5' : 'text-emerald-100'}`}>
-          <Zap className="w-5 h-5" />
-          <span className="text-[10px] mt-0.5 font-black uppercase">Diet</span>
-        </button>
-        <button onClick={() => setActiveTab('store')} className={`flex flex-col items-center pt-1.5 pb-1 px-2 ${activeTab === 'store' ? 'text-white border-t-2 border-white -mt-1.5' : 'text-emerald-100'}`}>
-          <ShoppingCart className="w-5 h-5" />
-          <span className="text-[10px] mt-0.5 font-black uppercase">Store</span>
-        </button>
-      </div>
-
-      {/* --- PRE-FOOTER CTA SECTION --- */}
-      <div className="bg-emerald-600 py-16 text-center border-t border-emerald-500 shadow-inner mt-12 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="gym-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M0 40L40 0H20L0 20M40 40V20L20 40" fill="currentColor" />
-              </pattern>
-            </defs>
-            <rect x="0" y="0" width="100%" height="100%" fill="url(#gym-pattern)" />
-          </svg>
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-wide drop-shadow-md">
-            Kya Tum Tayyar Ho Badlaav Ke Liye?
-          </h2>
-          <p className="text-emerald-100 text-lg md:text-xl font-medium mb-8">
-            Hazaro log apni life badal chuke hain. Ab tumhari baari hai. Aaj hi decision lo aur kal ka regret khatam karo.
-          </p>
-          <button 
-            onClick={() => setActiveTab('workout')}
-            className="bg-white text-emerald-700 px-10 py-4 rounded-full font-black text-xl hover:bg-green-100 hover:scale-105 transition-all shadow-xl shadow-green-900/20"
-          >
-            Aaj Hi Shuru Karein
-          </button>
-        </div>
-      </div>
+    </nav>
 
-      {/* --- MEGA FOOTER (Pure Professional Green Theme) --- */}
-      <footer className="bg-green-950 pt-16 pb-28 md:pb-12 border-t-4 border-lime-400 text-green-100 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            
-            {/* Column 1: Brand & Bio */}
-            <div className="space-y-6">
-              <div className="flex items-center gap-2 select-none">
-                <Flame className="text-lime-400 w-8 h-8" />
-                <span className="font-black text-3xl tracking-wider uppercase text-white">
-                  ZYM<span className="text-lime-400">KARO</span>
-                </span>
-              </div>
-              <p className="text-green-300 font-medium leading-relaxed">
-                Bharat ka sabse tezi se badhta fitness platform. Humara maksad har aam insaan ko fit, confident aur successful banana hai. Aalsi banna chhod do, duniya tumhara intezar kar rahi hai.
-              </p>
-              <div className="flex items-center gap-4 pt-2">
-                <a href="#" className="w-10 h-10 rounded-full bg-green-900 flex items-center justify-center hover:bg-lime-500 hover:text-green-950 transition-colors shadow-md">
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-green-900 flex items-center justify-center hover:bg-lime-500 hover:text-green-950 transition-colors shadow-md">
-                  <Youtube className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-green-900 flex items-center justify-center hover:bg-lime-500 hover:text-green-950 transition-colors shadow-md">
-                  <Facebook className="w-5 h-5" />
-                </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-green-900 flex items-center justify-center hover:bg-lime-500 hover:text-green-950 transition-colors shadow-md">
-                  <Twitter className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Column 2: Quick Links */}
-            <div>
-              <h3 className="text-white font-black text-xl mb-6 uppercase tracking-wider border-b-2 border-green-800 pb-2 inline-block">Quick Links</h3>
-              <ul className="space-y-3 font-medium text-green-300">
-                <li><button onClick={() => setActiveTab('home')} className="hover:text-lime-400 transition-colors flex items-center gap-2"><ChevronRight className="w-4 h-4"/> Motivation</button></li>
-                <li><button onClick={() => setActiveTab('workout')} className="hover:text-lime-400 transition-colors flex items-center gap-2"><ChevronRight className="w-4 h-4"/> Beginner Workout</button></li>
-                <li><button onClick={() => setActiveTab('diet')} className="hover:text-lime-400 transition-colors flex items-center gap-2"><ChevronRight className="w-4 h-4"/> Budget Diet Plan</button></li>
-                <li><button onClick={() => setActiveTab('store')} className="hover:text-lime-400 transition-colors flex items-center gap-2"><ChevronRight className="w-4 h-4"/> Fitness Store</button></li>
-                <li><a href="#" className="hover:text-lime-400 transition-colors flex items-center gap-2"><ChevronRight className="w-4 h-4"/> Success Stories</a></li>
-              </ul>
-            </div>
-
-            {/* Column 3: Support & Legal */}
-            <div>
-              <h3 className="text-white font-black text-xl mb-6 uppercase tracking-wider border-b-2 border-green-800 pb-2 inline-block">Support</h3>
-              <ul className="space-y-3 font-medium text-green-300">
-                <li><a href="#" className="hover:text-lime-400 transition-colors flex items-center gap-2"><AlertTriangle className="w-4 h-4"/> Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-lime-400 transition-colors flex items-center gap-2"><AlertTriangle className="w-4 h-4"/> Terms & Conditions</a></li>
-                <li><a href="#" className="hover:text-lime-400 transition-colors flex items-center gap-2"><AlertTriangle className="w-4 h-4"/> Refund Policy</a></li>
-                <li><a href="#" className="hover:text-lime-400 transition-colors flex items-center gap-2"><AlertTriangle className="w-4 h-4"/> FAQs</a></li>
-              </ul>
-              <div className="mt-6 space-y-3 text-green-300 font-medium">
-                <p className="flex items-center gap-3"><Mail className="w-5 h-5 text-lime-400"/> support@zymkaro.in</p>
-                <p className="flex items-center gap-3"><Phone className="w-5 h-5 text-lime-400"/> +91 98765 43210</p>
-                <p className="flex items-center gap-3"><MapPin className="w-5 h-5 text-lime-400"/> Fitness Hub, New Delhi, India</p>
-              </div>
-            </div>
-
-            {/* Column 4: Newsletter */}
-            <div>
-              <h3 className="text-white font-black text-xl mb-6 uppercase tracking-wider border-b-2 border-green-800 pb-2 inline-block">Free Fitness Tips</h3>
-              <p className="text-green-300 font-medium mb-4">Humare weekly newsletter ko subscribe karein aur free diet plans aur workout tips apne inbox mein payein.</p>
-              <form className="flex flex-col gap-3" onSubmit={(e) => { e.preventDefault(); alert("Subscribe karne ke liye shukriya!"); }}>
-                <input 
-                  type="email" 
-                  placeholder="Apna Email Darj Karein..." 
-                  required
-                  className="bg-green-900 border border-green-800 text-white px-4 py-3 rounded-xl focus:outline-none focus:border-lime-400 placeholder-green-500 font-medium"
-                />
-                <button type="submit" className="bg-lime-500 hover:bg-lime-400 text-green-950 font-black px-4 py-3 rounded-xl transition-colors shadow-lg shadow-lime-500/20">
-                  Subscribe Now
-                </button>
-              </form>
-            </div>
-
-          </div>
-        </div>
+    <!-- Main Content Area -->
+    <div id="main-content">
         
-        {/* Copyright Bottom Bar */}
-        <div className="border-t border-green-900 mt-16 pt-8 text-center px-4">
-          <p className="text-green-500 font-bold flex items-center justify-center gap-2 flex-wrap">
-            © 2026 ZymKaro.in | All Rights Reserved. <span className="hidden sm:inline">|</span> Made with <Heart className="w-4 h-4 text-red-500 fill-red-500 mx-1"/> in India
-          </p>
+        <!-- HOME SECTION -->
+        <div id="tab-home" class="tab-content active">
+            <!-- Hero Section -->
+            <div class="pt-8 md:pt-12 px-4 max-w-7xl mx-auto mb-16 md:mb-24">
+                <div class="relative rounded-[2rem] md:rounded-[3rem] overflow-hidden min-h-[75vh] py-16 md:py-20 flex items-center shadow-2xl shadow-green-700/30 border border-green-400">
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" alt="Fit happy people working out" class="w-full h-full object-cover" />
+                        <div class="absolute inset-0 bg-gradient-to-r from-green-900/90 via-emerald-900/80 to-transparent"></div>
+                    </div>
+                    <div class="relative z-10 text-left px-6 md:px-16 w-full max-w-4xl">
+                        <div class="inline-block bg-emerald-500 text-white px-4 md:px-5 py-2 rounded-full font-bold mb-6 shadow-lg border border-emerald-400 text-sm md:text-base">
+                            ✨ Apni Life Ko Transform Karo Aaj Hi ✨
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight uppercase tracking-tight text-white drop-shadow-lg">
+                            Utho, Fitness Apnao,<br/> <span class="text-emerald-300">Apni Value Badhao!</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl md:text-2xl text-green-100 mb-10 font-medium max-w-2xl drop-shadow-md">
+                            Aalsi ban kar rona band karo. Sirf 4 mahine Gym ko do aur dekho kaise tumhari health, looks, aur poori zindagi ek positive direction mein badal jayegi.
+                        </p>
+                        <button onclick="switchTab('workout')" class="bg-gradient-to-r from-emerald-500 to-green-600 text-white px-8 md:px-10 py-4 rounded-full font-black text-lg md:text-xl hover:scale-105 transition-transform shadow-xl shadow-emerald-500/40 flex items-center gap-2">
+                            Start Your Transformation <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reality Check Section -->
+            <div class="max-w-7xl mx-auto px-4 py-12 md:py-24">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 uppercase text-red-600 flex items-center justify-center gap-3 drop-shadow-sm flex-wrap">
+                        <i data-lucide="alert-triangle" class="w-8 h-8 md:w-10 md:h-10"></i> Kadwa Sach (Reality Check)
+                    </h2>
+                    <p class="text-xl text-green-800 font-bold">Aaina dekho aur khud se pucho, kya tum apni is aalsi halat se khush ho?</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1 relative rounded-3xl overflow-hidden shadow-2xl border border-emerald-400 bg-emerald-500 min-h-[350px] md:min-h-[450px]">
+                        <img src="https://images.unsplash.com/photo-1498805983167-a523078d762c?auto=format&fit=crop&w=800&q=80" alt="Regret and sad man" class="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 opacity-80 mix-blend-multiply" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-green-950/90 via-green-900/50 to-transparent p-8 flex flex-col justify-end">
+                            <p class="text-2xl font-bold text-emerald-300 mb-2">Piche Reh Gaye Tum...</p>
+                            <p class="text-green-100 font-medium">Jab dusre log khud par mehnat kar rahe the, tumne bahane banaye.</p>
+                        </div>
+                    </div>
+
+                    <div class="order-1 md:order-2 space-y-6 text-lg leading-relaxed text-green-900 font-medium">
+                        <div class="bg-green-300/80 p-6 rounded-2xl border border-green-400 border-l-4 border-l-red-500 shadow-lg shadow-green-600/10">
+                            <h3 class="text-2xl font-bold text-green-950 mb-2 flex items-center gap-2">
+                                <i data-lucide="heart" class="w-6 h-6 text-red-600"></i> Relationships & Dating
+                            </h3>
+                            <p>
+                                "Koi acchi ladki mujhe pasand kyu nahi karti?" - Iska reason tumhari personality hai. Fit logo ko dekh kar ladkiyan isliye attract hoti hain kyunki ek fit body <strong>Discipline aur Dedication</strong> dikhati hai. Agar tum khud ki care nahi kar sakte, toh kisi aur ki kya karoge?
+                            </p>
+                        </div>
+
+                        <div class="bg-emerald-200/80 p-6 rounded-2xl border border-emerald-300 border-l-4 border-l-blue-600 shadow-lg shadow-emerald-600/10">
+                            <h3 class="text-2xl font-bold text-green-950 mb-2 flex items-center gap-2">
+                                <i data-lucide="briefcase" class="w-6 h-6 text-blue-600"></i> Corporate & College Life
+                            </h3>
+                            <p>
+                                College ho ya badi corporate company, ek fit insaan ki entry hi alag hoti hai. Boss se lekar colleagues tak, sab unhe seriously lete hain. Tumhara motapa ya kamzori tumhe hamesha under-confident rakhti hai aur tum opportunities miss kar dete ho.
+                            </p>
+                        </div>
+                        
+                        <p class="text-xl font-bold text-green-900 bg-green-400 p-4 rounded-xl border border-green-500 shadow-sm">
+                            Regret karna band karo. Abhi bhi waqt hai. Aaj shuru karoge, toh 4 mahine baad tum bhi us list mein hoge jise dekh kar log inspire hote hain!
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transformations -->
+            <div class="bg-emerald-500/20 py-24 border-y border-emerald-400 backdrop-blur-sm">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">
+                            Dekho Inhone Kaise Badli Zindagi
+                        </h2>
+                        <p class="text-xl text-green-800 font-bold">Ye log bhi kabhi aalsi the, par inhone decision liya aur aaj inki success dekho.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Card 1 -->
+                        <div class="group relative rounded-3xl overflow-hidden bg-emerald-100 border border-emerald-300 hover:border-emerald-400 transition-colors shadow-xl shadow-emerald-600/20">
+                            <div class="h-72 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop" alt="Beautiful fit girl" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <i data-lucide="star" class="w-5 h-5 text-green-700 fill-green-700"></i>
+                                    <span class="font-black text-green-800 text-lg">Priya's Transformation</span>
+                                </div>
+                                <p class="text-green-900 font-medium">Pehle college me sab iska mazak udate the overweight hone ke karan. Aaj ye fitness model hai aur har koi iski personality ka fan hai. Gym ne iska confidence aasman par pohocha diya.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="group relative rounded-3xl overflow-hidden bg-green-200 border border-green-400 hover:border-green-500 transition-colors shadow-xl shadow-green-600/20">
+                            <div class="h-72 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2074&auto=format&fit=crop" alt="Corporate successful fit man" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <i data-lucide="briefcase" class="w-5 h-5 text-green-700"></i>
+                                    <span class="font-black text-green-800 text-lg">Rahul in Corporate</span>
+                                </div>
+                                <p class="text-green-900 font-medium">Patla aur under-confident Rahul jab meeting me bolta tha, koi nahi sunta tha. 6 mahine Gym kiya, personality aisi bani ki aaj wo apni IT company ka sabse dynamic team lead hai.</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="group relative rounded-3xl overflow-hidden bg-emerald-100 border border-emerald-300 hover:border-emerald-400 transition-colors shadow-xl shadow-emerald-600/20">
+                            <div class="h-72 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1543807535-eceef0bc6599?q=80&w=2070&auto=format&fit=crop" alt="Fit couple" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <i data-lucide="heart" class="w-5 h-5 text-red-600 fill-red-600"></i>
+                                    <span class="font-black text-green-800 text-lg">The Power Couple</span>
+                                </div>
+                                <p class="text-green-900 font-medium">Aman ko uski dream girl ne isliye choose kiya kyunki usne apne aap ko fit rakha tha. Ek fit insan doosre ko secure aur attractive feel karwata hai. Ye hai fitness ka real life magic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </footer>
+
+        <!-- WORKOUT SECTION -->
+        <div id="tab-workout" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">Tumhara Pehla Kadam</h2>
+                    <p class="text-xl text-green-800 font-bold">Pehle din se lekar pehle mahine tak kya karna hai, sab yahan hai. Darna nahi hai!</p>
+                </div>
+
+                <!-- Day 1 Plan -->
+                <div class="mb-20">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="bg-emerald-500 text-white p-3 rounded-xl shadow-lg border border-emerald-600"><i data-lucide="dumbbell" class="w-8 h-8"></i></div>
+                        <h3 class="text-3xl font-black text-green-950">Pehla Din Gym Mein: Full Body Mix</h3>
+                    </div>
+                    <p class="text-green-900 font-medium mb-8 text-lg bg-green-300 p-6 rounded-2xl border border-green-400 shadow-sm">
+                        Pehle din jyada weight mat uthana. Body ko aadat dalni hai. Sabse pehle 10 minute <strong class="text-green-950">Warm-up</strong> karna bahut jaruri hai.
+                    </p>
+                    
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <!-- Exercise 1 -->
+                        <div class="bg-emerald-100 rounded-3xl overflow-hidden border border-emerald-300 shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1598971639058-fab3c3109a00?w=600&auto=format&fit=crop" class="w-full h-56 object-cover" />
+                            <div class="p-6">
+                                <h4 class="text-xl font-black mb-3 text-green-950">Pushups (Chest)</h4>
+                                <div class="inline-block bg-green-400 px-4 py-2 rounded-lg text-green-950 font-bold text-sm border border-green-500">3 Sets x 10 Reps</div>
+                            </div>
+                        </div>
+                        <!-- Exercise 2 -->
+                        <div class="bg-emerald-100 rounded-3xl overflow-hidden border border-emerald-300 shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1581009137042-c552e485697a?w=600&auto=format&fit=crop" class="w-full h-56 object-cover" />
+                            <div class="p-6">
+                                <h4 class="text-xl font-black mb-3 text-green-950">Lat Pulldown (Back)</h4>
+                                <div class="inline-block bg-green-400 px-4 py-2 rounded-lg text-green-950 font-bold text-sm border border-green-500">3 Sets x 12 Reps</div>
+                            </div>
+                        </div>
+                        <!-- Exercise 3 -->
+                        <div class="bg-emerald-100 rounded-3xl overflow-hidden border border-emerald-300 shadow-xl">
+                            <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=600&auto=format&fit=crop" class="w-full h-56 object-cover" />
+                            <div class="p-6">
+                                <h4 class="text-xl font-black mb-3 text-green-950">Squats (Legs)</h4>
+                                <div class="inline-block bg-green-400 px-4 py-2 rounded-lg text-green-950 font-bold text-sm border border-green-500">3 Sets x 15 Reps</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month 1 Plan -->
+                <div class="bg-gradient-to-br from-green-300 to-emerald-300 p-8 md:p-12 rounded-[2rem] border border-green-400 shadow-2xl relative overflow-hidden">
+                    <h3 class="text-3xl font-black mb-8 flex items-center gap-3 relative z-10 text-green-950">
+                        <i data-lucide="trending-up" class="text-green-800 w-10 h-10"></i> Pehle Mahine Ka Target
+                    </h3>
+                    <ul class="space-y-6 relative z-10">
+                        <li class="flex items-start gap-4 bg-emerald-100/60 backdrop-blur-sm p-4 rounded-xl border border-emerald-300 shadow-sm">
+                            <i data-lucide="check-circle" class="w-7 h-7 text-green-700 shrink-0 mt-1"></i>
+                            <span class="text-lg text-green-900 font-medium"><strong>Consistency:</strong> Pehle 30 din tumhara ek hi goal hai - Roz Gym jana.</span>
+                        </li>
+                        <li class="flex items-start gap-4 bg-emerald-100/60 backdrop-blur-sm p-4 rounded-xl border border-emerald-300 shadow-sm">
+                            <i data-lucide="check-circle" class="w-7 h-7 text-green-700 shrink-0 mt-1"></i>
+                            <span class="text-lg text-green-900 font-medium"><strong>Form over Weight:</strong> Ego lifting mat karna. Posture sahi rakhna seekho.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- DIET SECTION -->
+        <div id="tab-diet" class="tab-content">
+            <div class="max-w-4xl mx-auto px-4 py-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">₹1500 - ₹2000 Diet Plan</h2>
+                    <p class="text-xl text-green-800 font-bold">Normal aur sasta diet plan jo sach mein kaam karta hai.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-green-200 p-6 rounded-2xl border border-green-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-5">
+                            <div class="text-4xl bg-emerald-200 p-3 rounded-full border border-emerald-300 shadow-sm">🍌</div>
+                            <div>
+                                <h4 class="text-green-800 font-black text-lg">Subah (Pre-workout)</h4>
+                                <p class="text-green-950 text-xl font-bold mt-1">2 Kele + 1 Cup Black Coffee</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-500 border border-emerald-600 text-white px-5 py-2 rounded-full text-sm font-black shadow-sm">Super Cheap</span>
+                    </div>
+
+                    <div class="bg-green-200 p-6 rounded-2xl border border-green-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-5">
+                            <div class="text-4xl bg-emerald-200 p-3 rounded-full border border-emerald-300 shadow-sm">🍳</div>
+                            <div>
+                                <h4 class="text-green-800 font-black text-lg">Breakfast (Post-workout)</h4>
+                                <p class="text-green-950 text-xl font-bold mt-1">50g Oats + Dudh + 3 Uble Ande</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-500 border border-emerald-600 text-white px-5 py-2 rounded-full text-sm font-black shadow-sm">High Protein</span>
+                    </div>
+
+                    <div class="bg-green-200 p-6 rounded-2xl border border-green-400 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-5">
+                            <div class="text-4xl bg-emerald-200 p-3 rounded-full border border-emerald-300 shadow-sm">🍛</div>
+                            <div>
+                                <h4 class="text-green-800 font-black text-lg">Dopehar (Lunch)</h4>
+                                <p class="text-green-950 text-xl font-bold mt-1">1 Katori Dal + Chawal/Roti + Dahi</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-500 border border-emerald-600 text-white px-5 py-2 rounded-full text-sm font-black shadow-sm">Ghar ka Khana</span>
+                    </div>
+                </div>
+                
+                <div class="mt-10 p-6 bg-emerald-200 border border-emerald-300 rounded-2xl text-center shadow-inner">
+                    <p class="text-green-950 font-bold text-lg">Agar budget hai toh ek scoop Whey Protein aur Creatine add kar lena. Store section check karo!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STORE SECTION -->
+        <div id="tab-store" class="tab-content">
+            <div class="max-w-7xl mx-auto px-4 py-12">
+                <div id="cart-msg" class="hidden fixed top-20 right-4 bg-green-600 text-white font-bold px-6 py-3 rounded-xl shadow-xl border border-green-500 z-50">
+                    Product Added!
+                </div>
+
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase text-green-950 drop-shadow-sm">Performance Boosters</h2>
+                    <p class="text-xl text-green-800 font-bold">(100% Genuine Recommended Products)</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Product 1 -->
+                    <div class="bg-green-200 rounded-3xl overflow-hidden border border-green-400 flex flex-col">
+                        <div class="relative h-64 bg-emerald-50 p-6 flex justify-center items-center border-b border-green-300">
+                            <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?w=500&auto=format&fit=crop" class="h-full object-contain mix-blend-multiply" />
+                            <div class="absolute top-4 right-4 bg-green-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">Best Seller</div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-black mb-2 text-green-950">Raw Whey Protein (1kg)</h3>
+                            <p class="text-green-900 font-medium mb-6 flex-grow">Workout ke baad muscles ko recover karne ke liye sabse best.</p>
+                            <div class="flex items-center justify-between mt-auto bg-emerald-200 p-4 rounded-2xl border border-emerald-300">
+                                <div>
+                                    <span class="text-sm text-green-800 line-through font-bold">₹2,499</span>
+                                    <div class="text-3xl font-black text-green-950">₹1,699</div>
+                                </div>
+                                <button onclick="buyNow('Whey Protein')" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                                    <i data-lucide="shopping-cart" class="w-5 h-5"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="bg-green-200 rounded-3xl overflow-hidden border border-green-400 flex flex-col">
+                        <div class="relative h-64 bg-emerald-50 p-6 flex justify-center items-center border-b border-green-300">
+                            <img src="https://images.unsplash.com/photo-1579722820308-d74e571900a9?w=500&auto=format&fit=crop" class="h-full object-contain mix-blend-multiply" />
+                            <div class="absolute top-4 right-4 bg-emerald-500 text-white text-xs font-black px-4 py-1.5 rounded-full">Must Have</div>
+                        </div>
+                        <div class="p-8 flex flex-col flex-grow">
+                            <h3 class="text-2xl font-black mb-2 text-green-950">Creatine Monohydrate (250g)</h3>
+                            <p class="text-green-900 font-medium mb-6 flex-grow">Size aur strength badhane ke liye sabse scientific proven supplement.</p>
+                            <div class="flex items-center justify-between mt-auto bg-emerald-200 p-4 rounded-2xl border border-emerald-300">
+                                <div>
+                                    <span class="text-sm text-green-800 line-through font-bold">₹999</span>
+                                    <div class="text-3xl font-black text-green-950">₹599</div>
+                                </div>
+                                <button onclick="buyNow('Creatine')" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2">
+                                    <i data-lucide="shopping-cart" class="w-5 h-5"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-  );
-};
+
+    <!-- Mobile Bottom Navigation -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 w-full bg-emerald-500 border-t border-emerald-600 z-50 flex justify-around items-center py-1.5 px-2 pb-[env(safe-area-inset-bottom,0.5rem)] shadow-lg">
+        <button onclick="switchTab('home')" id="mob-home" class="mob-btn flex flex-col items-center pt-1.5 pb-1 px-2 text-white border-t-2 border-white -mt-1.5">
+            <i data-lucide="flame" class="w-5 h-5"></i><span class="text-[10px] mt-0.5 font-black uppercase">Motivation</span>
+        </button>
+        <button onclick="switchTab('workout')" id="mob-workout" class="mob-btn flex flex-col items-center pt-1.5 pb-1 px-2 text-emerald-100">
+            <i data-lucide="dumbbell" class="w-5 h-5"></i><span class="text-[10px] mt-0.5 font-black uppercase">Workout</span>
+        </button>
+        <button onclick="switchTab('diet')" id="mob-diet" class="mob-btn flex flex-col items-center pt-1.5 pb-1 px-2 text-emerald-100">
+            <i data-lucide="zap" class="w-5 h-5"></i><span class="text-[10px] mt-0.5 font-black uppercase">Diet</span>
+        </button>
+        <button onclick="switchTab('store')" id="mob-store" class="mob-btn flex flex-col items-center pt-1.5 pb-1 px-2 text-emerald-100">
+            <i data-lucide="shopping-cart" class="w-5 h-5"></i><span class="text-[10px] mt-0.5 font-black uppercase">Store</span>
+        </button>
+    </div>
+
+    <!-- Pre-Footer CTA -->
+    <div class="bg-emerald-600 py-16 text-center border-t border-emerald-500 shadow-inner mt-12">
+        <div class="relative z-10 max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-6 uppercase tracking-wide">Kya Tum Tayyar Ho Badlaav Ke Liye?</h2>
+            <p class="text-emerald-100 text-lg md:text-xl font-medium mb-8">Hazaro log apni life badal chuke hain. Ab tumhari baari hai.</p>
+            <button onclick="switchTab('workout')" class="bg-white text-emerald-700 px-10 py-4 rounded-full font-black text-xl shadow-xl hover:scale-105 transition-all">Aaj Hi Shuru Karein</button>
+        </div>
+    </div>
+
+    <!-- Mega Footer -->
+    <footer class="bg-green-950 pt-16 pb-28 md:pb-12 border-t-4 border-lime-400 text-green-100 relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <!-- Col 1 -->
+                <div>
+                    <span class="font-black text-3xl text-white">ZYM<span class="text-lime-400">KARO</span></span>
+                    <p class="text-green-300 font-medium mt-4">Aalsi banna chhod do, duniya tumhara intezar kar rahi hai.</p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="p-2 bg-green-900 rounded-full hover:bg-lime-500 hover:text-green-950"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="p-2 bg-green-900 rounded-full hover:bg-lime-500 hover:text-green-950"><i data-lucide="youtube" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                <!-- Col 2 -->
+                <div>
+                    <h3 class="text-white font-black text-xl border-b-2 border-green-800 pb-2 inline-block">Quick Links</h3>
+                    <ul class="mt-4 space-y-2 text-green-300">
+                        <li><a href="#" onclick="switchTab('workout')" class="hover:text-lime-400">Workout Plan</a></li>
+                        <li><a href="#" onclick="switchTab('diet')" class="hover:text-lime-400">Diet Plan</a></li>
+                    </ul>
+                </div>
+                <!-- Col 3 -->
+                <div>
+                    <h3 class="text-white font-black text-xl border-b-2 border-green-800 pb-2 inline-block">Contact</h3>
+                    <div class="mt-4 space-y-3 text-green-300">
+                        <p class="flex gap-2"><i data-lucide="mail" class="w-5 h-5 text-lime-400"></i> support@zymkaro.in</p>
+                        <p class="flex gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-lime-400"></i> New Delhi, India</p>
+                    </div>
+                </div>
+                <!-- Col 4 -->
+                <div>
+                    <h3 class="text-white font-black text-xl border-b-2 border-green-800 pb-2 inline-block">Newsletter</h3>
+                    <form class="mt-4 flex flex-col gap-3" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                        <input type="email" placeholder="Email Address..." required class="bg-green-900 px-4 py-3 rounded-xl text-white outline-none">
+                        <button class="bg-lime-500 text-green-950 font-black py-3 rounded-xl">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-green-900 mt-12 pt-6 text-center text-green-500 font-bold">
+            © 2026 ZymKaro.in | All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Logic / JavaScript -->
+    <script>
+        // Icons Load karne ke liye
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            // Show target content
+            document.getElementById('tab-' + tabId).classList.add('active');
+            
+            // Update Desktop Nav styles
+            document.querySelectorAll('.nav-btn').forEach(el => {
+                el.classList.remove('text-green-950', 'border-b-2', 'border-green-900');
+            });
+            document.getElementById('nav-' + tabId).classList.add('text-green-950', 'border-b-2', 'border-green-900');
+
+            // Update Mobile Nav styles
+            document.querySelectorAll('.mob-btn').forEach(el => {
+                el.classList.remove('text-white', 'border-t-2', 'border-white', '-mt-1.5');
+                el.classList.add('text-emerald-100');
+            });
+            document.getElementById('mob-' + tabId).classList.remove('text-emerald-100');
+            document.getElementById('mob-' + tabId).classList.add('text-white', 'border-t-2', 'border-white', '-mt-1.5');
+            
+            // Scroll to top automatically
+            window.scrollTo(0, 0);
+        }
+
+        // Fake Buy Button Logic
+        function buyNow(productName) {
+            const msgBox = document.getElementById('cart-msg');
+            msgBox.textContent = productName + " Cart me add ho gaya!";
+            msgBox.classList.remove('hidden');
+            setTimeout(() => {
+                msgBox.classList.add('hidden');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
